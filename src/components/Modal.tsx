@@ -34,7 +34,6 @@ export const Modal = ({ text, loading, isOpen, closeModal, onSave }: Props) => {
             <Text>{text}</Text>
           )}
         </ModalBody>
-
         <ModalFooter>
           <Button colorScheme="blue" mr={3} onClick={onSave}>
             <Link href="/results">Save</Link>

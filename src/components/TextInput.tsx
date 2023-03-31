@@ -14,7 +14,7 @@ export const TextInput = ({ generateText }: Props) => {
     if (text === '') {
       toast({
         title: 'Text field is empty.',
-        description: 'Please enter some text to extract keywords.',
+        description: 'Please enter some text .',
         status: 'error',
         duration: 5000,
         isClosable: false,

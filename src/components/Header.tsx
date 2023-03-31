@@ -4,7 +4,6 @@ import Link from 'next/link';
 export const Header = () => {
   return (
     <Box
-      bg="blackAlpha.900"
       color="white"
       display="flex"
       justifyContent="space-between"

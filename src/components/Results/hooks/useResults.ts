@@ -1,45 +1,50 @@
 import { useAppContext } from '@/context/appContext';
 import { useState } from 'react';
+import { useToast } from '@chakra-ui/react';
 
-export const useGem = () => {
-  const [newText, setNewText] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
+export const useResults = () => {
+  const toast = useToast();
+  const { gemText } = useAppContext();
+  const [assessment, setAssessment] = useState('');
   const [loading, setLoading] = useState(false);
-  const { setGemText } = useAppContext();
 
-  const generateText = async (text: string) => {
+  const generateText = async () => {
     setLoading(true);
-    setIsOpen(true);
 
     try {
       const response = await fetch(
         process.env.NEXT_PUBLIC_OPENAI_API_URL ?? '',
-        getOptions(text)
+        getOptions(gemText)
       );
       const json = await response.json();
-      setNewText(json.choices[0].text.trim());
+      setAssessment(json.choices[0].text.trim());
       setLoading(false);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  const submit = () => {
+    if (gemText === '') {
+      toast({
+        title: 'Text field is empty.',
+        description: 'Please open home page.',
+        status: 'error',
+        duration: 5000,
+        isClosable: false,
+      });
+      return;
+    }
 
-  const onSave = () => {
-    setGemText(newText);
+    generateText();
   };
 
   return {
-    newText,
-    isOpen,
+    assessment,
     loading,
+    gemText,
     handlers: {
-      closeModal,
-      generateText,
-      onSave,
+      submit,
     },
   };
 };
@@ -54,14 +59,13 @@ function getOptions(text: string) {
     body: JSON.stringify({
       model: 'text-davinci-003',
       prompt:
-        'Rewrite this text in simple words explaining it and keep original size:\n\n' +
+        'Create assessment form with only 5 questions maximum from text:\n\n' +
         text +
         '',
       temperature: 0.5,
-      max_tokens: 500,
-      top_p: 1.0,
       frequency_penalty: 0.8,
       presence_penalty: 0.0,
+      max_tokens: 200,
     }),
   };
 }

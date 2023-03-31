@@ -1,8 +1,5 @@
-import { Gem } from '@/components/Gem';
-import { useAppContext } from '@/context/appContext';
+import { Results } from '@/components/Results';
 
 export default function Home() {
-  const { gemText } = useAppContext();
-  console.log(gemText, 'aaa');
-  return 'hello';
+  return <Results />;
 }
