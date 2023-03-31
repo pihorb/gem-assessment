@@ -5,12 +5,12 @@ export const useGem = () => {
   const [newText, setNewText] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { setGemText } = useAppContext();
+  const { setGemText, setPrevGemText } = useAppContext();
 
   const generateText = async (text: string) => {
     setLoading(true);
     setIsOpen(true);
-
+    setPrevGemText(text);
     try {
       const response = await fetch(
         process.env.NEXT_PUBLIC_OPENAI_API_URL ?? '',
@@ -53,10 +53,7 @@ function getOptions(text: string) {
     },
     body: JSON.stringify({
       model: 'text-davinci-003',
-      prompt:
-        'Rewrite this text in simple words explaining it and keep original size:\n\n' +
-        text +
-        '',
+      prompt: 'Rewrite text below by explaining terminology:\n\n' + text + '',
       temperature: 0.5,
       max_tokens: 500,
       top_p: 1.0,
@@ -65,3 +62,5 @@ function getOptions(text: string) {
     }),
   };
 }
+
+// prompt: 'Explain text below including terminology:\n\n' + text + '',

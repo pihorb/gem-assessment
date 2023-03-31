@@ -2,11 +2,14 @@ import { createContext, useContext, useState } from 'react';
 import type { FC, ReactNode } from 'react';
 
 const useAppState = () => {
+  const [prevGemText, setPrevGemText] = useState('');
   const [gemText, setGemText] = useState('');
 
   return {
     gemText,
     setGemText,
+    prevGemText,
+    setPrevGemText,
   };
 };
 

@@ -4,7 +4,7 @@ import { useToast } from '@chakra-ui/react';
 
 export const useResults = () => {
   const toast = useToast();
-  const { gemText } = useAppContext();
+  const { gemText, prevGemText } = useAppContext();
   const [assessment, setAssessment] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -40,6 +40,7 @@ export const useResults = () => {
   };
 
   return {
+    prevGemText,
     assessment,
     loading,
     gemText,
@@ -59,7 +60,7 @@ function getOptions(text: string) {
     body: JSON.stringify({
       model: 'text-davinci-003',
       prompt:
-        'Create assessment form with only 5 questions maximum from text:\n\n' +
+        'Create assessment form 5 to 10 questions max depend on text size from text:\n\n' +
         text +
         '',
       temperature: 0.5,
