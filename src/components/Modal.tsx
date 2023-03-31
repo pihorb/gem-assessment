@@ -35,15 +35,17 @@ export const Modal = ({ text, loading, isOpen, closeModal, onSave }: Props) => {
           )}
         </ModalBody>
         <ModalFooter>
-          <Button
-            bg="#6002EE"
-            _hover={{ bg: '#7E3FF2' }}
-            color="white"
-            mr={3}
-            onClick={onSave}
-          >
-            <Link href="/results">Save</Link>
-          </Button>
+          <Link href="/results">
+            <Button
+              bg="#6002EE"
+              _hover={{ bg: '#7E3FF2' }}
+              color="white"
+              mr={3}
+              onClick={onSave}
+            >
+              Save
+            </Button>
+          </Link>
         </ModalFooter>
       </ModalContent>
     </ChakraModal>

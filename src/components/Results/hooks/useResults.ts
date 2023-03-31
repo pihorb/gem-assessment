@@ -60,7 +60,7 @@ function getOptions(text: string) {
     body: JSON.stringify({
       model: 'text-davinci-003',
       prompt:
-        'Create assessment form 5 to 10 questions max depend on text size from text:\n\n' +
+        'Create assessment form 5 to 10 questions max based on text below:\n\n' +
         text +
         '',
       temperature: 0.5,
