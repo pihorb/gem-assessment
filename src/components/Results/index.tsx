@@ -36,10 +36,10 @@ export const Results = () => {
       </Box>
       <Button
         disabled
-        bg="blue.500"
+        bg="#6002EE"
+        _hover={{ bg: '#7E3FF2' }}
         color="white"
         width="100%"
-        _hover={{ bg: 'blue.700' }}
         onClick={handlers.submit}
       >
         Create assessment

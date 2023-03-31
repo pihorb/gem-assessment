@@ -35,15 +35,16 @@ export const TextInput = ({ generateText }: Props) => {
         color="black"
         value={text}
         borderColor="white.300"
+        _focus={{ borderColor: '#6002EE' }}
         onChange={(e) => setText(e.target.value)}
       />
 
       <Button
-        bg="blue.500"
+        bg="#6002EE"
+        _hover={{ bg: '#7E3FF2' }}
         color="white"
         marginTop={4}
         width="100%"
-        _hover={{ bg: 'blue.700' }}
         onClick={submitText}
       >
         Generate
