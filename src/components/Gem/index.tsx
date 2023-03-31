@@ -9,7 +9,7 @@ export const Gem = () => {
   return (
     <>
       <Container maxW="3xl" centerContent>
-        <Heading color="white">Enter Gem Text</Heading>
+        <Heading color="white">Gem Text</Heading>
         <TextInput generateText={generateText} />
       </Container>
       <Modal

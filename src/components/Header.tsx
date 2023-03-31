@@ -17,8 +17,8 @@ export const Header = () => {
           boxSize="50px"
         />
       </Link>
-      <Heading as="h3" size="lg" color="white">
-        AI Gem
+      <Heading size="lg" color="white" fontWeight={400}>
+        Shelf
       </Heading>
     </Box>
   );
